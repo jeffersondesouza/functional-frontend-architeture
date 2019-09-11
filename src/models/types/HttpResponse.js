@@ -1,6 +1,6 @@
 // @flow
 export type HttpResponse = {
-  url: string,
-  method?: string,
-  data?: Object
+  data: any,
+  status: number,
+  meta?: Object
 };
