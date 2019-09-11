@@ -6,13 +6,14 @@ import actions from "../../../store/rootActions";
 import { FilterBeersForm } from "../../components";
 
 const FilterBeersContainer = props => {
-  const { dispatchFilterBeers } = props;
-
-  const handleSearchBeer = name => dispatchFilterBeers(name);
+  const { dispatchFilterBeers, dispatchLoadMoreBeers } = props;
 
   return (
     <>
-      <FilterBeersForm onSearchBeer={handleSearchBeer} />
+      <FilterBeersForm
+        onLoadBeers={dispatchLoadMoreBeers}
+        onSearchBeer={dispatchFilterBeers}
+      />
     </>
   );
 };
@@ -20,7 +21,8 @@ const FilterBeersContainer = props => {
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = dispatch => ({
-  dispatchFilterBeers: name => dispatch(actions.beer.filterBeers(name))
+  dispatchFilterBeers: name => dispatch(actions.beer.filterBeers(name)),
+  dispatchLoadMoreBeers: name => dispatch(actions.beer.loadBeersRequest(true))
 });
 
 export default connect(

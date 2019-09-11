@@ -1,7 +1,8 @@
 import Types from "./actionTypes";
 
-const loadBeersRequest = () => ({
+const loadBeersRequest = reloadMode => ({
   type: Types.LOAD_BEERS_REQUEST,
+  payload: reloadMode,
   meta: {}
 });
 

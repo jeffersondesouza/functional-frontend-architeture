@@ -13,7 +13,9 @@ const FilterBeersForm = props => {
         placeholder="Digite o nome da marvada..."
       />
       <div className="FilterBeersForm__separator">ou</div>
-      <button className="FilterBeersForm__action">Carregar +</button>
+      <button onClick={props.onLoadBeers} className="FilterBeersForm__action">
+        Carregar +
+      </button>
     </div>
   );
 };
