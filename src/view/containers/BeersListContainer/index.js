@@ -15,7 +15,7 @@ const BeersListContainer = props => {
 
   return (
     <>
-      <BeersList beers={beers} />
+      <BeersList beers={BEERS} />
     </>
   );
 };
