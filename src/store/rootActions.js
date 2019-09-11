@@ -1,5 +1,5 @@
-import beerActions from "./beers/actions";
+import beerActions from "./modules/beers/actions";
 
 export default {
-  beer: { ...beerActions },
+  beer: { ...beerActions }
 };

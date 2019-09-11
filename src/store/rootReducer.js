@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
 
-import beersReducer from "./beers/reducer";
+import beersReducer from "./modules/beers/reducer";
 
 const appReducer = combineReducers({
   beers: beersReducer
