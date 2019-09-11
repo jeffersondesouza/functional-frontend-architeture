@@ -1,6 +1,6 @@
 // @flow
 
-export type BeerType = {
+export type Beer = {
   id: number,
   name: string,
   tagline: String,

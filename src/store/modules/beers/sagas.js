@@ -9,12 +9,13 @@ import { BeersFactory } from "../../../models/controllers/factory/";
 import { loadBeers } from "../../../models/controllers/repository/BeerQueries";
 
 function* loadBeersEffect({ payload }) {
-  const page = yield select(selectLoadBeersPage);
-  const res = yield httpfetch.request(loadBeers(page));
+  const loadBeerPage = yield select(selectLoadBeersPage);
+  const loadBeersResponse = yield httpfetch.request(loadBeers(loadBeerPage));
+  const beers = BeersFactory(loadBeersResponse.data);
 
-  const beers = BeersFactory(res.data);
   yield put(actions.loadBeersSuccess());
 
+  // paylod means reloadMode
   if (payload) {
     yield put(actions.updateReloadBeers(beers));
   } else {
