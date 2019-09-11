@@ -2,7 +2,8 @@ import Types from "./actionTypes";
 
 const loadBeersRequest = page => ({
   type: Types.LOAD_BEERS_REQUEST,
-  payload: page
+  payload: page,
+  meta: {}
 });
 
 const loadBeersSuccess = payload => ({
@@ -10,39 +11,39 @@ const loadBeersSuccess = payload => ({
   payload
 });
 
-const loadBeersFailure = payload => ({
+const loadBeersFailure = error => ({
   type: Types.LOAD_BEERS_FAILURE,
-  payload
+  payload: error
 });
 
-const loadBeerRequest = payload => ({
+const loadBeerRequest = id => ({
   type: Types.LOAD_BEER_REQUEST,
-  payload
+  payload: id
 });
 
-const loadBeerSuccess = payload => ({
+const loadBeerSuccess = beers => ({
   type: Types.LOAD_BEER_SUCCESS,
-  payload
+  payload: beers
 });
 
-const loadBeerFailure = payload => ({
+const loadBeerFailure = error => ({
   type: Types.LOAD_BEER_FAILURE,
-  payload
+  payload: error
 });
 
-const updateBeers = payload => ({
+const updateBeers = beer => ({
   type: Types.UPDATE_BEERS,
-  payload
+  payload: beer
 });
 
-const updateSelectedBeer = payload => ({
+const updateSelectedBeer = id => ({
   type: Types.UPDATE_SELECTED_BEER,
-  payload
+  payload: id
 });
 
-const filterBeers = payload => ({
+const filterBeers = name => ({
   type: Types.FILTER_BEERS,
-  payload
+  payload: name
 });
 
 export default {

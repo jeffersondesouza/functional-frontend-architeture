@@ -4,4 +4,5 @@ export default {
   filteredList: [],
   total: 0,
   selectedBeer: {},
+  loadBeerPage: 1
 };
