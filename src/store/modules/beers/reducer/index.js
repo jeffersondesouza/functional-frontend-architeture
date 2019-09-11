@@ -1,12 +1,8 @@
-import INITIAL_STATE from "./state";
-import Types from "./actionTypes";
+import INITIAL_STATE from "../state";
+import Types from "../actionTypes";
 
-const updateBeers = (state, action) => ({
-  ...state,
-  beersList: [...action.payload],
-  filteredList: [...action.payload],
-  total: action.payload.length
-});
+import filterBeers from "./filterBeers";
+import updateBeers from "./updateBeers";
 
 const updateReloadBeers = (state, action) => ({
   ...state,
@@ -66,6 +62,9 @@ const updateSelectedBeer = (state, action) => ({
 
 const reducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case Types.FILTER_BEERS:
+      return filterBeers(state, action);
+
     case Types.LOAD_BEERS_REQUEST:
       return loadBeersRequest(state, action);
 
@@ -96,5 +95,7 @@ const reducer = (state = INITIAL_STATE, action) => {
       return state;
   }
 };
+
+/* manter a ideia de combinar reuest actions e update actios via um combineReducers */
 
 export default reducer;
