@@ -1,0 +1,18 @@
+@import './../../../styles/variables';
+
+.AppHeader {
+  background-color: $codGray;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+
+  &__title {
+    font-family: 'Bungee Inline', cursive;
+    font-size: 2rem;
+  }
+
+  &__counter {
+    font-size: 1.8rem;
+  }
+}
