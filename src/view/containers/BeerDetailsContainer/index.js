@@ -1,13 +1,13 @@
 import React from "react";
-import BeersList from "../../components/BeersList";
+import { BeerDetails } from "../../components";
 
-const BeersListContainer = () => (
+const BeerDetailsContainer = () => (
   <>
-    <BeersList beers={[...BEERS, ...BEERS, ...BEERS]} />
+    <BeerDetails {...BEERS[0]} />
   </>
 );
 
-export default BeersListContainer;
+export default BeerDetailsContainer;
 
 const BEERS = [
   {

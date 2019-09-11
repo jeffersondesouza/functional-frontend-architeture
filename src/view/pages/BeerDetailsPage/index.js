@@ -1,10 +1,14 @@
 import React from "react";
 
 import "./styles.scss";
-
+import { BeerDetailsContainer } from "../../containers";
 
 const BeerDetailsPage = () => {
-  return <div>BeerDetailsPage</div>;
+  return (
+    <div>
+      <BeerDetailsContainer />
+    </div>
+  );
 };
 
 export default BeerDetailsPage;
