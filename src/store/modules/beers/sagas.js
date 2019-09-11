@@ -34,9 +34,13 @@ function* loadBeersEffect({ payload }) {
 }
 
 function* loadDetailsBeerEffect({ payload }) {
+  
   const loadBeerResponse = yield httpfetch.request(loadBeerQuery(payload));
+  
   const beer = BeerFactory(loadBeerResponse.data[0]);
+  
   yield put(actions.loadBeersSuccess());
+  
   yield put(actions.updateSelectedBeer(beer));
 }
 
