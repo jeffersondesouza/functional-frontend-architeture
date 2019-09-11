@@ -1,4 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import actions from "../../../store/rootActions";
+import { selectTotalBeers } from "../../../store/selectors";
+
 import { BeerDetails } from "../../components";
 
 const BeerDetailsContainer = () => (
@@ -7,7 +12,11 @@ const BeerDetailsContainer = () => (
   </>
 );
 
-export default BeerDetailsContainer;
+const mapStateToProps = state => ({
+  ...state
+});
+
+export default connect(mapStateToProps)(BeerDetailsContainer);
 
 const BEERS = [
   {
