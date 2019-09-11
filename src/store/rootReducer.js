@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import beersReducer from "./beers/reducer";
 
 const appReducer = combineReducers({
+  beers: beersReducer
 });
 
 const rootReducer = (state, action) => {
