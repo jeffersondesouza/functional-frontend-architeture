@@ -1,6 +1,6 @@
 import Types from "./actionTypes";
 
-const loadBeersRequest = (reloadMode) => ({
+const loadBeersRequest = reloadMode => ({
   type: Types.LOAD_BEERS_REQUEST,
   payload: reloadMode,
   meta: {}
@@ -36,6 +36,11 @@ const updateBeers = beer => ({
   payload: beer
 });
 
+const updateReloadBeers = beer => ({
+  type: Types.UPDATE_RELOAD_BEERS,
+  payload: beer
+});
+
 const updateSelectedBeer = id => ({
   type: Types.UPDATE_SELECTED_BEER,
   payload: id
@@ -55,5 +60,6 @@ export default {
   loadBeerFailure,
   updateBeers,
   updateSelectedBeer,
-  filterBeers
+  filterBeers,
+  updateReloadBeers
 };

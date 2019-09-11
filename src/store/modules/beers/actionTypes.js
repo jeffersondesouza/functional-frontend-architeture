@@ -7,6 +7,7 @@ export const LOAD_BEER_SUCCESS = "beers:LOAD_BEER_SUCCESS";
 export const LOAD_BEER_FAILURE = "beers:LOAD_BEER_FAILURE";
 
 export const UPDATE_BEERS = "beers:UPDATE_BEERS";
+export const UPDATE_RELOAD_BEERS = "beers:UPDATE_RELOAD_BEERS";
 export const UPDATE_SELECTED_BEER = "beers:UPDATE_SELECTED_BEER";
 export const FILTER_BEERS = "beers:FILTER_BEERS";
 
@@ -19,5 +20,6 @@ export default {
   LOAD_BEER_FAILURE,
   UPDATE_BEERS,
   UPDATE_SELECTED_BEER,
-  FILTER_BEERS
+  FILTER_BEERS,
+  UPDATE_RELOAD_BEERS
 };

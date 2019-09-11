@@ -1,15 +1,70 @@
 import INITIAL_STATE from "./state";
+import Types from "./actionTypes";
+
+const updateBeers = (state, action) => ({
+  ...state,
+  beersList: [...action.payload],
+  filteredList: [...action.payload],
+  total: action.payload.length
+});
+
+const updateReloadBeers = (state, action) => ({
+  ...state,
+  beersList: [...state.beersList, ...action.payload],
+  filteredList: [...state.beersList, ...action.payload],
+  total: state.total + action.payload.length
+});
+
+const loadBeersRequest = (state, action) => ({
+  ...state,
+  isLoadingBeers: true,
+  loadingBeersSuccess: false,
+  loadingBeersFailure: false
+});
+
+const loadBeersSuccess = (state, action) => ({
+  ...state,
+  isLoadingBeers: false,
+  loadingBeersSuccess: true,
+  loadingBeersFailure: false,
+  loadBeerPage: state.loadBeerPage + 1
+});
+
+const loadBeersFailure = (state, action) => ({
+  ...state,
+  isLoadingBeers: false,
+  loadingBeersSuccess: false,
+  loadingBeersFailure: true
+});
+
+const loadBeerRequest = (state, action) => ({
+  ...state,
+  isLoadingSelectedBeer: true,
+  loadingSelectedBeerSuccess: false,
+  loadingSelectedBeerFailure: false,
+  selectedBeer: {}
+});
+
+const loadBeerSuccess = (state, action) => ({
+  ...state,
+  isLoadingSelectedBeer: false,
+  loadingSelectedBeerSuccess: true,
+  loadingSelectedBeerFailure: false
+});
+
+const loadBeerFailure = (state, action) => ({
+  ...state,
+  isLoadingSelectedBeer: false,
+  loadingSelectedBeerSuccess: false,
+  loadingSelectedBeerFailure: true
+});
+
+const updateSelectedBeer = (state, action) => ({
+  ...state,
+  selectedBeer: { ...action.payload }
+});
 
 const reducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
-
-export default reducer;
-
-/* const requestReducers = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case Types.LOAD_BEERS_REQUEST:
       return loadBeersRequest(state, action);
@@ -28,8 +83,18 @@ export default reducer;
 
     case Types.LOAD_BEER_FAILURE:
       return loadBeerFailure(state, action);
+    case Types.UPDATE_BEERS:
+      return updateBeers(state, action);
+
+    case Types.UPDATE_RELOAD_BEERS:
+      return updateReloadBeers(state, action);
+
+    case Types.UPDATE_BEER:
+      return updateSelectedBeer(state, action);
 
     default:
       return state;
   }
-}; */
+};
+
+export default reducer;
