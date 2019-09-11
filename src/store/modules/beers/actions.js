@@ -1,8 +1,7 @@
 import Types from "./actionTypes";
 
-const loadBeersRequest = page => ({
+const loadBeersRequest = () => ({
   type: Types.LOAD_BEERS_REQUEST,
-  payload: page,
   meta: {}
 });
 

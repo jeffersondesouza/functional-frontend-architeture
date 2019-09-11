@@ -1,22 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import actions from "../../../store/rootActions";
-import { selectTotalBeers } from "../../../store/selectors";
+import { selectFilteredBeers } from "../../../store/selectors";
 
 import BeersList from "../../components/BeersList";
 
-const BeersListContainer = () => (
-  <>
-    <BeersList beers={[...BEERS, ...BEERS, ...BEERS]} />
-  </>
-);
+const BeersListContainer = props => {
+  const { beers, dispatchLoadBeers } = props;
+
+  useEffect(() => {
+    dispatchLoadBeers();
+  }, [dispatchLoadBeers]);
+
+  return (
+    <>
+      <BeersList beers={beers} />
+    </>
+  );
+};
 
 const mapStateToProps = state => ({
-  ...state
+  beers: selectFilteredBeers(state)
 });
 
-export default connect(mapStateToProps)(BeersListContainer);
+const mapDispatchToProps = dispatch => ({
+  dispatchLoadBeers: () => dispatch(actions.beer.loadBeersRequest())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(BeersListContainer);
 
 const BEERS = [
   {

@@ -5,12 +5,25 @@ import actions from "../../../store/rootActions";
 
 import { FilterBeersForm } from "../../components";
 
-const FilterBeersContainer = () => (
-  <>
-    <FilterBeersForm />
-  </>
-);
+const FilterBeersContainer = props => {
+  const { dispatchFilterBeers } = props;
+
+  const handleSearchBeer = name => dispatchFilterBeers(name);
+
+  return (
+    <>
+      <FilterBeersForm onSearchBeer={handleSearchBeer} />
+    </>
+  );
+};
 
 const mapStateToProps = () => ({});
 
-export default connect(mapStateToProps)(FilterBeersContainer);
+const mapDispatchToProps = dispatch => ({
+  dispatchFilterBeers: name => dispatch(actions.beer.filterBeers(name))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FilterBeersContainer);
