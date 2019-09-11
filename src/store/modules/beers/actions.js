@@ -41,9 +41,9 @@ const updateReloadBeers = beer => ({
   payload: beer
 });
 
-const updateSelectedBeer = id => ({
+const updateSelectedBeer = beer => ({
   type: Types.UPDATE_SELECTED_BEER,
-  payload: id
+  payload: beer
 });
 
 const filterBeers = name => ({

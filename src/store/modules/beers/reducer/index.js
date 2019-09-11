@@ -88,7 +88,7 @@ const reducer = (state = INITIAL_STATE, action) => {
     case Types.UPDATE_RELOAD_BEERS:
       return updateReloadBeers(state, action);
 
-    case Types.UPDATE_BEER:
+    case Types.UPDATE_SELECTED_BEER:
       return updateSelectedBeer(state, action);
 
     default:

@@ -5,12 +5,20 @@ import actions from "./actions";
 import actionTypes from "./actionTypes";
 import httpfetch from "../../../models/services/httpfetch";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
-import { BeersFactory } from "../../../models/controllers/factory/";
-import { loadBeers } from "../../../models/controllers/repository/BeerQueries";
+import {
+  BeersFactory,
+  BeerFactory
+} from "../../../models/controllers/factory/";
+import {
+  loadBeersQuery,
+  loadBeerQuery
+} from "../../../models/controllers/repository/BeerQueries";
 
 function* loadBeersEffect({ payload }) {
   const loadBeerPage = yield select(selectLoadBeersPage);
-  const loadBeersResponse = yield httpfetch.request(loadBeers(loadBeerPage));
+  const loadBeersResponse = yield httpfetch.request(
+    loadBeersQuery(loadBeerPage)
+  );
   const beers = BeersFactory(loadBeersResponse.data);
 
   yield put(actions.loadBeersSuccess());
@@ -23,7 +31,12 @@ function* loadBeersEffect({ payload }) {
   }
 }
 
-function* loadDetailsBeerEffect({ payload }) {}
+function* loadDetailsBeerEffect({ payload }) {
+  const loadBeerResponse = yield httpfetch.request(loadBeerQuery(payload));
+  const beer = BeerFactory(loadBeerResponse.data[0]);
+  yield put(actions.loadBeersSuccess());
+  yield put(actions.updateSelectedBeer(beer));
+}
 
 function* watchLoadBeers() {
   yield takeEvery(actionTypes.LOAD_BEERS_REQUEST, loadBeersEffect);
