@@ -3,7 +3,11 @@ import React from "react";
 import "./styles.scss";
 
 const BeerDetails = props => {
-  const { imageUrl, name, tagline, abv, description } = props;
+  const { id, imageUrl, name, tagline, abv, description } = props;
+
+  if (!id) {
+    return <div className="BeerDetails">Não encotrada</div>;
+  }
 
   return (
     <div className="BeerDetails">
