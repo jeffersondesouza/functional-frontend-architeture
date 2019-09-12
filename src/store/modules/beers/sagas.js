@@ -15,7 +15,7 @@ import {
 } from "../../../models/controllers/repository/BeerQueries";
 
 function* loadBeersEffect({ payload }) {
-  console.time('load')
+  console.time("load");
   const loadBeerPage = yield select(selectLoadBeersPage);
   const loadBeersResponse = yield call(
     httpfetch.request,
@@ -23,7 +23,7 @@ function* loadBeersEffect({ payload }) {
   );
 
   const beers = BeersFactory(loadBeersResponse.data);
-  console.timeEnd('load')
+  console.timeEnd("load");
 
   yield put(actions.loadBeersSuccess());
 
@@ -36,13 +36,12 @@ function* loadBeersEffect({ payload }) {
 }
 
 function* loadDetailsBeerEffect({ payload }) {
-  
   const loadBeerResponse = yield httpfetch.request(loadBeerQuery(payload));
-  
+
   const beer = BeerFactory(loadBeerResponse.data[0]);
-  
+
   yield put(actions.loadBeersSuccess());
-  
+
   yield put(actions.updateSelectedBeer(beer));
 }
 

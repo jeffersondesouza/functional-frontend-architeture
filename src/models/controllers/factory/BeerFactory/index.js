@@ -2,6 +2,11 @@
 
 import type { Beer } from "./../../../types/Beer";
 
+export const toRequest = (data: any) => ({
+  id: data,
+  id_value: data
+});
+
 export default (data: Object): Beer => ({
   id: data.id,
   name: data.name,

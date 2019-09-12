@@ -6,8 +6,11 @@ import type { HttpResponse } from "./../types/HttpResponse";
 
 import HttpResponseFactory from "../controllers/factory/HttpResponseFactory";
 
-const request = (requestOptions: HttpRequestOptions): Promise<HttpResponse> => {
-  return axios(requestOptions).then(HttpResponseFactory);
+const request = (
+  requestOptions: HttpRequestOptions,
+  customMapper?: () => any
+): Promise<HttpResponse> => {
+  return axios(requestOptions).then(HttpResponseFactory(customMapper));
 };
 
 export default {
