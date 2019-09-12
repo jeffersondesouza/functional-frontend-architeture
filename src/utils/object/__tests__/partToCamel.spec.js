@@ -1,4 +1,4 @@
-import parseToCamel from "../parseSnakeCaseObjectToCamelObject";
+import parseToCamel from "../parseSnakeCaseToCamelObject";
 
 describe("parseToCamel", () => {
   describe("Simple objects", () => {

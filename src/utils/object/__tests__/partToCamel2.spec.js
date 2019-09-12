@@ -1,9 +1,11 @@
-import parseToCamel from "../parseSnakeCaseObjectToCamelObject";
+import parseToCamel from "../parseSnakeCaseToCamelObject";
 
 describe("parseToCamel: large array", () => {
   describe("Neste Object", () => {
     it("should parse a large array", () => {
+      console.time("parsecamel");
       expect(parseToCamel(SNAKE_MOCK)).toEqual(CAMEL_MOCK);
+      console.timeEnd("parsecamel");
     });
   });
 });

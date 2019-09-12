@@ -17,6 +17,7 @@ const copyProp = (originObject, targetObject) => prop =>
   (targetObject[toCamelCase(prop)] = deepCopyToCamelCase(originObject[prop]));
 
 const deepCopyToCamelCase = object => {
+  
   if (isObject(object)) {
     const camelCaseObject = new object.constructor();
 
