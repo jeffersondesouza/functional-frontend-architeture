@@ -36,9 +36,14 @@ const updateBeers = beer => ({
   payload: beer
 });
 
-const updateSelectedBeer = id => ({
+const updateReloadBeers = beer => ({
+  type: Types.UPDATE_RELOAD_BEERS,
+  payload: beer
+});
+
+const updateSelectedBeer = beer => ({
   type: Types.UPDATE_SELECTED_BEER,
-  payload: id
+  payload: beer
 });
 
 const filterBeers = name => ({
@@ -55,5 +60,6 @@ export default {
   loadBeerFailure,
   updateBeers,
   updateSelectedBeer,
-  filterBeers
+  filterBeers,
+  updateReloadBeers
 };
