@@ -1,1 +1,7 @@
-export default state => state.beers.total;
+import Maybe from "../../utils/monads";
+
+export default state =>
+  Maybe.of(state)
+    .map(data => data.beers)
+    .map(data => data.total)
+    .get();
