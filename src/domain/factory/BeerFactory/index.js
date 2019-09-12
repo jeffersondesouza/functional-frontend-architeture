@@ -1,11 +1,6 @@
 // @flow
 
-import type { Beer } from "./../../../types/Beer";
-
-export const toRequest = (data: any) => ({
-  id: data,
-  id_value: data
-});
+import type { Beer } from "./../../types/Beer";
 
 export default (data: Object): Beer => ({
   id: data.id,

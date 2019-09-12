@@ -61,7 +61,7 @@ class Just extends Functor {
   }
 }
 
-class Maybe extends Functor {
+export class Maybe extends Functor {
   constructor(x) {
     return x === undefined || x === null ? new Nothing() : new Just(x);
   }

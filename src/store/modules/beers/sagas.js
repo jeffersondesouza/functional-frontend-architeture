@@ -8,22 +8,19 @@ import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
 import {
   BeersFactory,
   BeerFactory
-} from "../../../domain/controllers/factory/";
+} from "../../../domain/factory/";
 import {
   loadBeersQuery,
   loadBeerQuery
-} from "../../../domain/controllers/repository/BeerQueries";
+} from "../../../domain/repository/BeerRepository";
 
 function* loadBeersEffect({ payload }) {
-  console.time("load");
   const loadBeerPage = yield select(selectLoadBeersPage);
-  const loadBeersResponse = yield call(
-    httpfetch.request,
+
+  const loadBeersResponse = yield httpfetch.request(
     loadBeersQuery(loadBeerPage)
   );
-
   const beers = BeersFactory(loadBeersResponse.data);
-  console.timeEnd("load");
 
   yield put(actions.loadBeersSuccess());
 
