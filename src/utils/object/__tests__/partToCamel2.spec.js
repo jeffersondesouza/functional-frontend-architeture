@@ -1,4 +1,4 @@
-import parseToCamel from "../parseToCamel";
+import parseToCamel from "../parseSnakeCaseObjectToCamelObject";
 
 describe("parseToCamel: large array", () => {
   describe("Neste Object", () => {
