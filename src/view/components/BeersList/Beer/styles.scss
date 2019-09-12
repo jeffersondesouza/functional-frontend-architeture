@@ -1,0 +1,60 @@
+.Beer {
+
+  background: #f7f7f7;
+  display: inline-block;
+  width: 25rem;
+  height: 30rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  overflow: hidden;
+  position: relative;
+
+  &__add {
+    position: absolute;
+    top: 1rem;
+    right: 0;
+
+    button {
+      background: #93e327;
+    }
+  }
+
+
+}
+
+
+.BeerImage {
+  &__img {
+    height: 20rem;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.BeerFooter {
+
+  &__name,
+  &__tagline,
+  &__abv {
+    color: #686868;
+  }
+
+  &__name {
+    color: #686868;
+    font-weight: 600;
+    margin: 1rem 0 .5rem 0;
+    line-height: 1;
+  }
+
+  &__tagline {
+    line-height: 1;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  &__abv {
+    text-align: right;
+  }
+}

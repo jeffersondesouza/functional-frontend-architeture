@@ -1,0 +1,35 @@
+@import './../../../styles/variables';
+
+.FilterBeersForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__input {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid $concrete;
+    outline: none;
+  }
+
+  &__separator {
+    margin: 0 2rem;
+    font-size: 1.5rem;
+  }
+
+  &__action {
+    background-color: $codGray;
+    border: none;
+    border-bottom: 3px solid $doveGray;
+    border-right: 1.5px solid $doveGray;
+    border-radius: 3px;
+    color: #fefefe;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 10px 3rem;
+
+    &:active {
+      background-color: $doveGray;
+    }
+  }
+}

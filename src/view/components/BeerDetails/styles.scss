@@ -1,0 +1,40 @@
+.BeerDetails {
+  padding-top: 5rem;
+  display: flex;
+  justify-content: center;
+
+  &__picture {
+    margin-right: 5rem;
+  }
+
+  &__img {
+    max-height: 25rem;
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__summary-name {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__summary-tagline {
+    font-weight: 700;
+    color: #686868;
+    margin-bottom: 3rem;
+  }
+
+  &__summary-description {
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+
+  &__summary-abv {
+    text-align: right;
+    font-size: 1.2rem;
+  }
+
+}
