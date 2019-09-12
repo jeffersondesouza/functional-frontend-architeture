@@ -13,17 +13,19 @@ const objectPropertyNames = object => Object.getOwnPropertyNames(object);
 
 const isObject = object => object && typeof object === "object";
 
-const deepCopyOnCamel = object => {
-  let camelCaseCopy = object;
+const copyProp = (originObject, targetObject) => prop =>
+  (targetObject[toCamelCase(prop)] = deepCopyToCamelCase(originObject[prop]));
 
+const deepCopyToCamelCase = object => {
   if (isObject(object)) {
-    camelCaseCopy = new object.constructor();
-    objectPropertyNames(object).forEach(prop => {
-      return (camelCaseCopy[toCamelCase(prop)] = deepCopyOnCamel(object[prop]));
-    });
+    const camelCaseObject = new object.constructor();
+
+    objectPropertyNames(object).forEach(copyProp(object, camelCaseObject));
+
+    return camelCaseObject;
   }
 
-  return camelCaseCopy;
+  return object;
 };
 
-export default deepCopyOnCamel;
+export default deepCopyToCamelCase;
