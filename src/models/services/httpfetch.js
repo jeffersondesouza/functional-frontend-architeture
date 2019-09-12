@@ -9,6 +9,7 @@ import HttpResponseFactory from "../controllers/factory/HttpResponseFactory";
 const request = (requestOptions: HttpRequestOptions): Promise<HttpResponse> => {
   return axios(requestOptions).then(HttpResponseFactory);
 };
+
 export default {
   request
 };
