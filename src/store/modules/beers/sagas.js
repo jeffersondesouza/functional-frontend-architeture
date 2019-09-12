@@ -3,16 +3,16 @@ import { takeEvery, put, call, all, select } from "redux-saga/effects";
 
 import actions from "./actions";
 import actionTypes from "./actionTypes";
-import httpfetch from "../../../models/services/httpfetch";
+import httpfetch from "../../../domain/services/httpfetch";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
 import {
   BeersFactory,
   BeerFactory
-} from "../../../models/controllers/factory/";
+} from "../../../domain/controllers/factory/";
 import {
   loadBeersQuery,
   loadBeerQuery
-} from "../../../models/controllers/repository/BeerQueries";
+} from "../../../domain/controllers/repository/BeerQueries";
 
 function* loadBeersEffect({ payload }) {
   console.time("load");
