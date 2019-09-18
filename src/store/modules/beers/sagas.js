@@ -3,19 +3,20 @@ import { takeEvery, put, all, select } from "redux-saga/effects";
 
 import actions from "./actions";
 import actionTypes from "./actionTypes";
-
-import httpfetch from "../../../services/HttpFetch";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
+
+import httpFetchService from "../../../services/HttpFetch";
+
 import { BeersFactory, BeerFactory } from "../../../domain/factory/";
 import {
   loadBeersQuery,
   loadBeerQuery
-} from "../../../domain/repository/BeerRepository";
+} from "../../../domain/repositories/BeerRepository";
 
 function* loadBeersEffect({ payload }) {
   const loadBeerPage = yield select(selectLoadBeersPage);
 
-  const loadBeersResponse = yield httpfetch.request(
+  const loadBeersResponse = yield httpFetchService.request(
     loadBeersQuery(loadBeerPage)
   );
   const beers = BeersFactory(loadBeersResponse.data);
@@ -31,7 +32,9 @@ function* loadBeersEffect({ payload }) {
 }
 
 function* loadDetailsBeerEffect({ payload }) {
-  const loadBeerResponse = yield httpfetch.request(loadBeerQuery(payload));
+  const loadBeerResponse = yield httpFetchService.request(
+    loadBeerQuery(payload)
+  );
 
   const beer = BeerFactory(loadBeerResponse.data[0]);
 
