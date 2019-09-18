@@ -1,25 +1,27 @@
 //  @flow
-import { takeEvery, put, all, select } from "redux-saga/effects";
+import { takeEvery, put, all, select, call } from "redux-saga/effects";
 
 import actions from "./actions";
 import actionTypes from "./actionTypes";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
 
-import httpFetchService from "../../../services/HttpFetch";
+import httpFetchService from "../../../domain/services/HttpFetch";
 
-import { BeersFactory, BeerFactory } from "../../../domain/factory/";
 import {
   loadBeersQuery,
   loadBeerQuery
 } from "../../../domain/repositories/BeerRepository";
 
+import { BeersFactory, BeerFactory } from "../../../domain/factory/";
+
 function* loadBeersEffect({ payload }) {
   const loadBeerPage = yield select(selectLoadBeersPage);
 
-  const loadBeersResponse = yield httpFetchService.request(
+  const { data } = yield call(
+    httpFetchService.request,
     loadBeersQuery(loadBeerPage)
   );
-  const beers = BeersFactory(loadBeersResponse.data);
+  const beers = BeersFactory(data);
 
   yield put(actions.loadBeersSuccess());
 
