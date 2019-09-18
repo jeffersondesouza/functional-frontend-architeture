@@ -1,27 +1,41 @@
 //  @flow
-import { takeEvery, put, all, select } from "redux-saga/effects";
+import { takeEvery, put, all, select, call } from "redux-saga/effects";
 
 import actions from "./actions";
 import actionTypes from "./actionTypes";
-import httpfetch from "../../../domain/services/httpfetch";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
-import { BeersFactory, BeerFactory } from "../../../domain/factory/";
+
+import httpFetchService from "../../../domain/services/HttpFetch";
+
 import {
   loadBeersQuery,
   loadBeerQuery
-} from "../../../domain/repository/BeerRepository";
+} from "../../../domain/repositories/BeerRepository";
 
+import { BeersFactory, BeerFactory } from "../../../domain/factory/";
+
+/**
+ * @param {*} paylod means reloadMode
+ */
 function* loadBeersEffect({ payload }) {
-  const loadBeerPage = yield select(selectLoadBeersPage);
+  const beersPage = yield select(selectLoadBeersPage);
 
-  const loadBeersResponse = yield httpfetch.request(
-    loadBeersQuery(loadBeerPage)
+  const { data } = yield call(
+    httpFetchService.request,
+    loadBeersQuery(beersPage)
   );
-  const beers = BeersFactory(loadBeersResponse.data);
+  const beers = BeersFactory(data);
+
+  /* 
+      this separations ensure more flexibility to use the reponse like:
+
+      const highPH = [...data].map(beer => beer.ph).sort((a, b) => b - a)[0];
+
+      const beetTip = BeerTipFactory(data)
+  */
 
   yield put(actions.loadBeersSuccess());
 
-  // paylod means reloadMode
   if (payload) {
     yield put(actions.updateReloadBeers(beers));
   } else {
@@ -30,7 +44,9 @@ function* loadBeersEffect({ payload }) {
 }
 
 function* loadDetailsBeerEffect({ payload }) {
-  const loadBeerResponse = yield httpfetch.request(loadBeerQuery(payload));
+  const loadBeerResponse = yield httpFetchService.request(
+    loadBeerQuery(payload)
+  );
 
   const beer = BeerFactory(loadBeerResponse.data[0]);
 

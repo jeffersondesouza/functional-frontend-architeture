@@ -1,7 +1,7 @@
 import parseToCamel from "../../../utils/object/parseSnakeCaseToCamelObject";
 
 import type { HttpResponse } from "./../../../types/HttpResponse";
-import { Try, Maybe } from "../../../utils/monads";
+import { Try, Maybe } from "../../../utils/functors";
 
 export default customMapper => (res: any): HttpResponse => ({
   data: Try.of(() => customMapper(res.data), parseToCamel(res.data)).get(),
