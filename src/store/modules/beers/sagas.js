@@ -3,7 +3,8 @@ import { takeEvery, put, all, select } from "redux-saga/effects";
 
 import actions from "./actions";
 import actionTypes from "./actionTypes";
-import httpfetch from "../../../services/httpfetch";
+
+import httpfetch from "../../../services/HttpFetch";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
 import { BeersFactory, BeerFactory } from "../../../domain/factory/";
 import {

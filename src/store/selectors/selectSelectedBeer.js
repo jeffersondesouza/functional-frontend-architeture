@@ -4,4 +4,4 @@ export default state =>
   Maybe.of(state)
     .map(data => data.beers)
     .map(data => data.selectedBeer)
-    .get();
+    .get({});
