@@ -5,7 +5,7 @@ import actions from "./actions";
 import actionTypes from "./actionTypes";
 import selectLoadBeersPage from "../../selectors/selectLoadBeersPage";
 
-import httpFetchService from "../../../domain/services/HttpFetch";
+import http from "../../../domain/services/HttpFetch";
 
 import {
   loadBeersQuery,
@@ -18,13 +18,24 @@ import { BeersFactory, BeerFactory } from "../../../domain/factory/";
  * @param {*} paylod means reloadMode
  */
 function* loadBeersEffect({ payload }) {
+  const reloadMode = payload;
   const beersPage = yield select(selectLoadBeersPage);
 
-  const { data } = yield call(
-    httpFetchService.request,
-    loadBeersQuery(beersPage)
-  );
+  // {data, status, meta}
+  const { data, status } = yield call(http.request, loadBeersQuery(beersPage));
   const beers = BeersFactory(data);
+
+  if (status !== 0) {
+    return yield put(actions.loadBeersFailure());
+  }
+
+  yield put(actions.loadBeersSuccess());
+
+  if (reloadMode) {
+    yield put(actions.updateReloadBeers(beers));
+  } else {
+    yield put(actions.updateBeers(beers));
+  }
 
   /* 
       this separations ensure more flexibility to use the reponse like:
@@ -33,22 +44,12 @@ function* loadBeersEffect({ payload }) {
 
       const beetTip = BeerTipFactory(data)
   */
-
-  yield put(actions.loadBeersSuccess());
-
-  if (payload) {
-    yield put(actions.updateReloadBeers(beers));
-  } else {
-    yield put(actions.updateBeers(beers));
-  }
 }
 
 function* loadDetailsBeerEffect({ payload }) {
-  const loadBeerResponse = yield httpFetchService.request(
-    loadBeerQuery(payload)
-  );
+  const { data } = yield http.request(loadBeerQuery(payload));
 
-  const beer = BeerFactory(loadBeerResponse.data[0]);
+  const beer = BeerFactory(data[0]);
 
   yield put(actions.loadBeersSuccess());
 
