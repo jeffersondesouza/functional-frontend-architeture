@@ -1,4 +1,4 @@
-import Maybe from "../../utils/monads";
+import { Maybe } from "../../utils/functors";
 
 export default state =>
   Maybe.of(state)

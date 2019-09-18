@@ -1,6 +1,6 @@
 // @flow
 import parseToCamel from "../../../utils/object/parseSnakeCaseToCamelObject";
-import { Try, Maybe } from "../../../utils/monads";
+import { Try, Maybe } from "../../../utils/functors";
 
 type HttpResponse = {
   data: any,
