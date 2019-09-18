@@ -14,18 +14,28 @@ import {
 
 import { BeersFactory, BeerFactory } from "../../../domain/factory/";
 
+/**
+ * @param {*} paylod means reloadMode
+ */
 function* loadBeersEffect({ payload }) {
-  const loadBeerPage = yield select(selectLoadBeersPage);
+  const beersPage = yield select(selectLoadBeersPage);
 
   const { data } = yield call(
     httpFetchService.request,
-    loadBeersQuery(loadBeerPage)
+    loadBeersQuery(beersPage)
   );
   const beers = BeersFactory(data);
 
+  /* 
+      this separations ensure more flexibility to use the reponse like:
+
+      const highPH = [...data].map(beer => beer.ph).sort((a, b) => b - a)[0];
+
+      const beetTip = BeerTipFactory(data)
+  */
+
   yield put(actions.loadBeersSuccess());
 
-  // paylod means reloadMode
   if (payload) {
     yield put(actions.updateReloadBeers(beers));
   } else {

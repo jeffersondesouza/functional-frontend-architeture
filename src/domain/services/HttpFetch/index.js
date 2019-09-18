@@ -1,10 +1,3 @@
-import axios from "axios";
-import parseHttpResponse from "./parseHttpResponse";
+import request from "./request";
 
-const request = (requestOptions, customMapperFn) => {
-  return axios(requestOptions).then(parseHttpResponse(customMapperFn));
-};
-
-export default {
-  request
-};
+export default { request };
